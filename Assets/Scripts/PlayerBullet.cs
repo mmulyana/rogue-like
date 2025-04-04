@@ -4,6 +4,10 @@ public class PlayerBullet : MonoBehaviour
 {
     public Rigidbody2D rb;
 
+    [Header("Effect Info")]
+    public GameObject impactEffect;
+
+    [Header("Bullet Speed Info")]
     public float speed = 8f;
 
 
@@ -21,6 +25,12 @@ public class PlayerBullet : MonoBehaviour
 
 
     private void OnTriggerEnter2D(Collider2D other)
+    {
+        Instantiate(impactEffect, transform.position, transform.rotation);
+        Destroy(gameObject);
+    }
+
+    private void OnBecameInvisible()
     {
         Destroy(gameObject);
     }

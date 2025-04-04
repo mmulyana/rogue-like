@@ -3,11 +3,11 @@ using UnityEngine.UIElements;
 
 public class Player : MonoBehaviour
 {
-    public GameObject bulletToFire;
-    public Transform firePoint;
     public Rigidbody2D rb;
     public Animator anim;
+
     private Camera cam;
+    private Vector2 moveInput;
 
     [Header("Move Info")]
     [SerializeField] private float speedMove;
@@ -15,7 +15,11 @@ public class Player : MonoBehaviour
     [Header("Arm Info")]
     public Transform gunArm;
 
-    private Vector2 moveInput;
+    [Header("Shoot Info")]
+    public GameObject bulletToFire;
+    public Transform firePoint;
+    public float timeBetweenShots;
+    private float shotCounter;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -31,10 +35,25 @@ public class Player : MonoBehaviour
         PlayerMove();
         PlayerGunMove();
         CheckAnimation();
+        PlayerShoot();
+    }
 
-        if(Input.GetMouseButtonDown(0))
+    private void PlayerShoot()
+    {
+        if (Input.GetMouseButtonDown(0))
         {
             Instantiate(bulletToFire, firePoint.position, firePoint.rotation);
+            shotCounter = timeBetweenShots;
+        }
+
+        if (Input.GetMouseButton(0))
+        {
+            shotCounter -= Time.deltaTime;
+            if (shotCounter <= 0)
+            {
+                Instantiate(bulletToFire, firePoint.position, firePoint.rotation);
+                shotCounter = timeBetweenShots;
+            }
         }
     }
 

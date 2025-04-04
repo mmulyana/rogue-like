@@ -130,7 +130,7 @@ GameObject:
   - component: {fileID: 180474451}
   - component: {fileID: 180474452}
   m_Layer: 3
-  m_Name: Characters_13
+  m_Name: body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -217,7 +217,7 @@ GameObject:
   - component: {fileID: 210985169}
   - component: {fileID: 210985170}
   m_Layer: 3
-  m_Name: Guns_12
+  m_Name: gun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -235,7 +235,8 @@ Transform:
   m_LocalPosition: {x: -0.023, y: -0.15, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1629167735}
   m_Father: {fileID: 1151297962}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &210985170
@@ -550,6 +551,9 @@ MonoBehaviour:
   anim: {fileID: 1151297965}
   speedMove: 4
   gunArm: {fileID: 210985169}
+  bulletToFire: {fileID: 367812375412148388, guid: a435a11cb1bfa5f40b5603fde6c04720, type: 3}
+  firePoint: {fileID: 1629167735}
+  timeBetweenShots: 0.2
 --- !u!4 &1151297962
 Transform:
   m_ObjectHideFlags: 0
@@ -662,7 +666,7 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!1 &1574223785
+--- !u!1 &1616942797
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -670,22 +674,22 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1574223787}
-  - component: {fileID: 1574223786}
+  - component: {fileID: 1616942799}
+  - component: {fileID: 1616942798}
   m_Layer: 0
-  m_Name: Box
+  m_Name: box
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!61 &1574223786
+--- !u!61 &1616942798
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1574223785}
+  m_GameObject: {fileID: 1616942797}
   m_Enabled: 1
   serializedVersion: 3
   m_Density: 1
@@ -709,11 +713,11 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0.11854696}
+  m_Offset: {x: 0, y: -0.41822588}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -723,22 +727,53 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1, y: 12.113629}
+  m_Size: {x: 1, y: 5.417509}
   m_EdgeRadius: 0
---- !u!4 &1574223787
+--- !u!4 &1616942799
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1574223785}
+  m_GameObject: {fileID: 1616942797}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.31, y: -0.19, z: -0.003014405}
+  m_LocalPosition: {x: -3.03, y: -0.16, z: -0.06412341}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1629167734
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1629167735}
+  m_Layer: 3
+  m_Name: firePoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1629167735
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1629167734}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.74, y: 0.24, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 210985169}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
@@ -747,4 +782,4 @@ SceneRoots:
   - {fileID: 519420032}
   - {fileID: 619394802}
   - {fileID: 1151297962}
-  - {fileID: 1574223787}
+  - {fileID: 1616942799}

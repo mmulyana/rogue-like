@@ -3,6 +3,8 @@ using UnityEngine.UIElements;
 
 public class Player : MonoBehaviour
 {
+    public GameObject bulletToFire;
+    public Transform firePoint;
     public Rigidbody2D rb;
     public Animator anim;
     private Camera cam;
@@ -29,6 +31,11 @@ public class Player : MonoBehaviour
         PlayerMove();
         PlayerGunMove();
         CheckAnimation();
+
+        if(Input.GetMouseButtonDown(0))
+        {
+            Instantiate(bulletToFire, firePoint.position, firePoint.rotation);
+        }
     }
 
     private void CheckAnimation()

@@ -3,6 +3,8 @@ using UnityEngine.UIElements;
 
 public class Player : MonoBehaviour
 {
+    public static Player instance;
+
     public Rigidbody2D rb;
     public Animator anim;
 
@@ -21,12 +23,20 @@ public class Player : MonoBehaviour
     public float timeBetweenShots;
     private float shotCounter;
 
+    public GameObject damageEffect;
+
+    private void Awake()
+    {
+        instance = this;
+    }
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         cam = Camera.main;
+        anim = GetComponent<Animator>();
     }
 
     // Update is called once per frame

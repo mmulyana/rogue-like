@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8863432536193850616}
   - component: {fileID: 2500186119527242992}
   - component: {fileID: 350217041433209460}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Player_Bullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -105,6 +105,7 @@ MonoBehaviour:
   rb: {fileID: 350217041433209460}
   impactEffect: {fileID: 5375339588361203789, guid: f2a5002790da65a41ac677851f42fa63, type: 3}
   speed: 8
+  damage: 50
 --- !u!61 &2500186119527242992
 BoxCollider2D:
   m_ObjectHideFlags: 0

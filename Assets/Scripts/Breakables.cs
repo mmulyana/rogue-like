@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class DamagePlayer : MonoBehaviour
+public class Breakables : MonoBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -18,11 +18,7 @@ public class DamagePlayer : MonoBehaviour
     {
         if(other.tag == "Player")
         {
-            if (PlayerHealth.instance.invicCount <= 0)
-            {
-                Instantiate(Player.instance.damageEffect, Player.instance.transform.position, Player.instance.transform.rotation);
-                PlayerHealth.instance.DamagePlayer();
-            }
+            Destroy(gameObject);
         }
     }
 }

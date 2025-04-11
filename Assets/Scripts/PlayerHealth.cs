@@ -7,7 +7,7 @@ public class PlayerHealth : MonoBehaviour
     public int maxHealth;
 
     public float damageInvicLength = 1f;
-    private float invicCount;
+    public float invicCount;
 
     private void Awake()
     {
@@ -28,6 +28,10 @@ public class PlayerHealth : MonoBehaviour
         if(invicCount > 0)
         {
             invicCount -= Time.deltaTime;
+            if (invicCount < 0)
+            {
+                invicCount = 0;
+            }
         }
     }
 
@@ -48,5 +52,10 @@ public class PlayerHealth : MonoBehaviour
                 UIController.instance.gameOverScreen.SetActive(true);
             }
         }
+    }
+
+    public void MakeInvicible(float length)
+    {
+        invicCount = length;
     }
 }

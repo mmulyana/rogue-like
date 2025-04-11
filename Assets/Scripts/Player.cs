@@ -25,6 +25,10 @@ public class Player : MonoBehaviour
 
     public GameObject damageEffect;
 
+    public float activeSpeedMove;
+    public float dashSpeed = 8f, dashLength = .5f, dashCooldown = 1f, dashInvicbility = .5f;
+    private float dashCounter, dashCoolCounter;
+
     private void Awake()
     {
         instance = this;
@@ -37,6 +41,8 @@ public class Player : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         cam = Camera.main;
         anim = GetComponent<Animator>();
+
+        activeSpeedMove = speedMove;
     }
 
     // Update is called once per frame
@@ -46,6 +52,41 @@ public class Player : MonoBehaviour
         PlayerGunMove();
         CheckAnimation();
         PlayerShoot();
+
+        if(Input.GetKeyDown(KeyCode.Space))
+        {
+            if(dashCoolCounter <= 0 && dashCounter <= 0)
+            {
+                activeSpeedMove = dashSpeed;
+                dashCounter = dashLength;
+
+                PlayerHealth.instance.MakeInvicible(dashInvicbility);
+            }
+        }
+
+        if(dashCounter > 0)
+        {
+            dashCounter -= Time.deltaTime;
+            if(dashCounter <= 0)
+            {
+                // back normal speed
+                activeSpeedMove = speedMove;
+                dashCoolCounter = dashCooldown;
+            }
+        }
+
+        if(dashCoolCounter > 0)
+        {
+            dashCoolCounter -= Time.deltaTime;
+        }
+
+        if(dashCounter > 0)
+        {
+            anim.SetBool("isDash", true);
+        } else
+        {
+            anim.SetBool("isDash", false);
+        }
     }
 
     private void PlayerShoot()
@@ -110,6 +151,6 @@ public class Player : MonoBehaviour
 
         //transform.position += new Vector3(moveInput.x * Time.deltaTime * speedMove, moveInput.y * Time.deltaTime * speedMove, 0f);
 
-        rb.linearVelocity = moveInput * speedMove;
+        rb.linearVelocity = moveInput * activeSpeedMove;
     }
 }

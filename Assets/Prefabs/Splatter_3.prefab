@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5500244350554459022}
   - component: {fileID: 2621565248106185610}
   - component: {fileID: 4425883951063042199}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Splatter_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}

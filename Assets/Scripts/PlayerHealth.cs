@@ -13,7 +13,7 @@ public class PlayerHealth : MonoBehaviour
     {
         instance = this;
     }
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+
     void Start()
     {
         currentHealth = maxHealth;
@@ -22,7 +22,6 @@ public class PlayerHealth : MonoBehaviour
 
     }
 
-    // Update is called once per frame
     void Update()
     {
         if(invicCount > 0)
@@ -50,6 +49,8 @@ public class PlayerHealth : MonoBehaviour
                 Player.instance.gameObject.SetActive(false);
 
                 UIController.instance.gameOverScreen.SetActive(true);
+
+                AudioManager.instance.PlayGameOver();
             }
         }
     }
@@ -57,5 +58,15 @@ public class PlayerHealth : MonoBehaviour
     public void MakeInvicible(float length)
     {
         invicCount = length;
+    }
+
+    public void HealPlayer(int healAmount)
+    {
+        currentHealth += healAmount;
+        if(currentHealth > maxHealth)
+        {
+            currentHealth = maxHealth;
+        }
+        UIController.instance.healthSlider.value = currentHealth;
     }
 }

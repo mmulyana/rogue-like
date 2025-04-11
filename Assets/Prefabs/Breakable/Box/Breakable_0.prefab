@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7424769649918412176}
   - component: {fileID: 7600909974285479789}
   - component: {fileID: 2061102655432902263}
+  - component: {fileID: 5643065946646269412}
   m_Layer: 6
   m_Name: Breakable_0
   m_TagString: Untagged
@@ -75,8 +76,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 46165387
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 4098156409588004937, guid: b1e514ee9c00f0c458e99f588dfa4cb0, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -109,6 +110,11 @@ MonoBehaviour:
   - {fileID: 8136002859293836039, guid: 4c27e3a058f715044bd41e0b1a2d0f99, type: 3}
   - {fileID: 8587243406169137389, guid: 7abe17ac7bf9a234fba8a2fd244e3b7c, type: 3}
   maxPieces: 8
+  shouldDropItem: 1
+  itemToDrop:
+  - {fileID: 160040648329176039, guid: 80bd9205b768b0a4883da933e76cea31, type: 3}
+  - {fileID: 5846705346220560033, guid: 467eee8a334ac2c4da81ed2cf12a7087, type: 3}
+  itemDropPercent: 50
 --- !u!61 &2061102655432902263
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -155,3 +161,15 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.8125, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &5643065946646269412
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6009226849328607046}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c950acc54b6eca4f8e1e5a68b0f3bd0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

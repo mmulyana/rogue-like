@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1552222182074553386}
   - component: {fileID: 8899868160939318900}
   - component: {fileID: 5524879737293489321}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Breakable_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -74,8 +74,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 46165387
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: 4053375744630672729, guid: b1e514ee9c00f0c458e99f588dfa4cb0, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

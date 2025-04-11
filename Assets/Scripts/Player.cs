@@ -27,7 +27,8 @@ public class Player : MonoBehaviour
 
     public float activeSpeedMove;
     public float dashSpeed = 8f, dashLength = .5f, dashCooldown = 1f, dashInvicbility = .5f;
-    private float dashCounter, dashCoolCounter;
+    public float dashCounter;
+    private float dashCoolCounter;
 
     private void Awake()
     {
@@ -35,7 +36,6 @@ public class Player : MonoBehaviour
     }
 
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -45,17 +45,20 @@ public class Player : MonoBehaviour
         activeSpeedMove = speedMove;
     }
 
-    // Update is called once per frame
     void Update()
     {
         PlayerMove();
         PlayerGunMove();
         CheckAnimation();
         PlayerShoot();
+        PlayerDash();
+    }
 
-        if(Input.GetKeyDown(KeyCode.Space))
+    private void PlayerDash()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
         {
-            if(dashCoolCounter <= 0 && dashCounter <= 0)
+            if (dashCoolCounter <= 0 && dashCounter <= 0)
             {
                 activeSpeedMove = dashSpeed;
                 dashCounter = dashLength;
@@ -64,10 +67,10 @@ public class Player : MonoBehaviour
             }
         }
 
-        if(dashCounter > 0)
+        if (dashCounter > 0)
         {
             dashCounter -= Time.deltaTime;
-            if(dashCounter <= 0)
+            if (dashCounter <= 0)
             {
                 // back normal speed
                 activeSpeedMove = speedMove;
@@ -75,15 +78,16 @@ public class Player : MonoBehaviour
             }
         }
 
-        if(dashCoolCounter > 0)
+        if (dashCoolCounter > 0)
         {
             dashCoolCounter -= Time.deltaTime;
         }
 
-        if(dashCounter > 0)
+        if (dashCounter > 0)
         {
             anim.SetBool("isDash", true);
-        } else
+        }
+        else
         {
             anim.SetBool("isDash", false);
         }

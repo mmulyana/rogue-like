@@ -2,13 +2,15 @@ using UnityEngine;
 
 public class Breakables : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    [Header("Pieces Info")]
+    public GameObject[] brokenPieces;
+    public int maxPieces;
+
     void Start()
     {
         
     }
 
-    // Update is called once per frame
     void Update()
     {
         
@@ -18,7 +20,18 @@ public class Breakables : MonoBehaviour
     {
         if(other.tag == "Player")
         {
-            Destroy(gameObject);
+            if(Player.instance.dashCounter > 0)
+            {
+                Destroy(gameObject);
+
+                int piecesToDrop = Random.Range(1, maxPieces);
+
+                for(int i = 0; i < piecesToDrop; i++)
+                {
+                    int randomPiece = Random.Range(0, brokenPieces.Length);
+                    Instantiate(brokenPieces[randomPiece], transform.position, transform.rotation);
+                }
+            }
         }
     }
 }

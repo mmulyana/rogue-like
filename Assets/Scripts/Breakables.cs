@@ -20,36 +20,46 @@ public class Breakables : MonoBehaviour
         
     }
 
+    public void Smash()
+    {
+        Destroy(gameObject);
+
+        AudioManager.instance.PlaySfx(0);
+
+        //show broken pieces
+        int piecesToDrop = Random.Range(1, maxPieces);
+
+        for (int i = 0; i < piecesToDrop; i++)
+        {
+            int randomPiece = Random.Range(0, brokenPieces.Length);
+
+            Instantiate(brokenPieces[randomPiece], transform.position, transform.rotation);
+        }
+
+        //drop items
+        if (shouldDropItem)
+        {
+            float dropChance = Random.Range(0f, 100f);
+
+            if (dropChance < itemDropPercent)
+            {
+                int randomItem = Random.Range(0, itemToDrop.Length);
+
+                Instantiate(itemToDrop[randomItem], transform.position, transform.rotation);
+            }
+        }
+    }
+
     private void OnTriggerEnter2D(Collider2D other)
     {
         if(other.tag == "Player")
         {
-            if(Player.instance.dashCounter > 0)
-            {
-                Destroy(gameObject);
+            Smash();
+        }
 
-                AudioManager.instance.PlaySfx(0);
-
-                int piecesToDrop = Random.Range(1, maxPieces);
-
-                for(int i = 0; i < piecesToDrop; i++)
-                {
-                    int randomPiece = Random.Range(0, brokenPieces.Length);
-                    Instantiate(brokenPieces[randomPiece], transform.position, transform.rotation);
-                }
-            }
-
-            // drop item
-            if(shouldDropItem)
-            {
-                float dropChange = Random.Range(0f, 100f);
-                if(dropChange < itemDropPercent)
-                {
-                    int random = Random.Range(0, itemToDrop.Length);
-
-                    Instantiate(itemToDrop[random], transform.position, transform.rotation);
-                }
-            }
+        if(other.tag == "PlayerBullet")
+        {
+            Smash();
         }
     }
 }
